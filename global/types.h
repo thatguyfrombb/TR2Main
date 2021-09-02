@@ -54,9 +54,15 @@ typedef struct {
 #define REQ_LEVEL_VERSION	(45)
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
+/* Original values
 // FPS values
 #define FRAMES_PER_SECOND	(30)
 #define TICKS_PER_FRAME		(2)
+#define TICKS_PER_SECOND	(TICKS_PER_FRAME * FRAMES_PER_SECOND)
+*/
+// FPS values
+#define FRAMES_PER_SECOND	(60)
+#define TICKS_PER_FRAME		(1)
 #define TICKS_PER_SECOND	(TICKS_PER_FRAME * FRAMES_PER_SECOND)
 
 // Formula values

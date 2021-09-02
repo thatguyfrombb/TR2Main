@@ -259,7 +259,10 @@ void __cdecl DrawPickups(BOOL pickupState) {
 
 	time = SaveGame.statistics.timer - oldGameTimer;
 	oldGameTimer = SaveGame.statistics.timer;
-	if( time <= 0 || time >= 60 ) // 0..2 seconds
+	// This change fixes pickups flashing for 60FPS, caused by
+	// drawing at 60FPS while all the game runs at 30FPS.
+	//if( time <= 0 || time >= 60 ) // 0..2 seconds
+	if( time < 0 || time >= 60 ) // 0..2 seconds
 		return;
 
 #ifdef FEATURE_HUD_IMPROVED

@@ -49,7 +49,10 @@ int __cdecl ControlPhase(int nTicks, BOOL demoMode) {
 	int result = 0;
 
 	CLAMPG(nTicks, 5 * TICKS_PER_FRAME);
-	for( tickCount += nTicks; tickCount > 0; tickCount -= TICKS_PER_FRAME ) {
+	// Hardcoded for now. Slows all of the game code back to 30FPS
+	// Also makes it frame double, which is nice enough for this
+	//for( tickCount += nTicks; tickCount > 0; tickCount -= TICKS_PER_FRAME ) {
+	for( tickCount += nTicks; tickCount > 0; tickCount -= TICKS_PER_FRAME * 2 ) {
 		if( CD_TrackID > 0 ) {
 			S_CDLoop();
 		}

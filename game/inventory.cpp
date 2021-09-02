@@ -87,6 +87,8 @@ int __cdecl Display_Inventory(INVENTORY_MODE invMode) {
 	RING_INFO ring;
 	PHD_3DPOS viewPos;
 	INV_MOTION_INFO motion;
+	// Static so we cause less time discrepancies
+	static bool isOddFrame = true;
 
 	memset(&ring, 0, sizeof(RING_INFO));
 	memset(&motion, 0, sizeof(INV_MOTION_INFO));
@@ -334,7 +336,12 @@ int __cdecl Display_Inventory(INVENTORY_MODE invMode) {
 
 		Camera.numberFrames = nTicks = S_DumpScreen();
 
-		if( CurrentLevel != 0 ) { // not Lara home
+
+        isOddFrame = !isOddFrame;
+        // Sure, we could add less time than needed here
+        // Just don't use this for speedrunning
+		//if( CurrentLevel != 0 ) { // not Lara home
+		if( CurrentLevel != 0 && isOddFrame ) { // not Lara home
 			SaveGame.statistics.timer += nTicks / TICKS_PER_FRAME;
 		}
 
